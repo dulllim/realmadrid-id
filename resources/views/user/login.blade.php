@@ -8,7 +8,7 @@
                     <div class="card bg-light border-primary" style="border-radius: 20px">
                         <div class="card-body">
                             <div class="text-center mb-4">
-                                <img src="assets/images/rm-logo.png" class="img-fluid mb-2" width="100">
+                                <img src="{{ asset('assets/images/rm-logo.png') }}" class="img-fluid mb-2" width="100">
                                 <h4 class="text-center">Login Member</h4>
                             </div>
 
@@ -31,7 +31,8 @@
                                 </div>
                             @endif
 
-                            <form>
+                            <form action="{{ url("user/process-login") }}" method="POST">
+                                @csrf
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp"

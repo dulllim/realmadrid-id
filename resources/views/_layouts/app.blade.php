@@ -14,7 +14,7 @@
 <body>
     {{-- navbar --}}
     <section>
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar navbar-expand-lg bg-warning">
             <div class="container">
                 <a class="navbar-brand" href="{{ url("/") }}">Real Madrid ID</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -30,10 +30,22 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Tentang Kami</a>
                         </li>
+                        @auth
+                            <li>
+                                <form action="{{ url('user/process-logout') }}" method="post">
+                                    @csrf
+                                    <button class="btn btn-primary ms-2" type="submit">Logout</button>
+                                </form>
+                            </li>
+                        @else
+                            <li>
+                                <a class="btn btn-primary ms-2" href="{{ url('user/register') }}">Daftar Member</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-outline-primary ms-2" href="{{ url('user/login') }}">Login</a>
+                            </li>
+                        @endauth
                     </ul>
-
-                    <a class="btn btn-primary ms-2" href="{{ url('user/register') }}">Daftar Member</a>
-                    <a class="btn btn-outline-primary ms-2" href="{{ url('user/login') }}">Login</a>
                 </div>
             </div>
         </nav>
